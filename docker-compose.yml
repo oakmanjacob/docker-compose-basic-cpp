@@ -1,0 +1,21 @@
+version: '3'
+services:
+  server:
+    image: sandbox_test
+    container_name: sandbox_server
+    command: ./server
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
+  client:
+    image: sandbox_test
+    container_name: sandbox_client
+    command: ./client 172.20.128.2
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.3
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
